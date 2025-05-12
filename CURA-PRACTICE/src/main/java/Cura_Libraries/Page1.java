@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import util.CommonTestMethods;
+
 public class Page1 {
 	
 	WebDriver wd;
@@ -18,47 +20,31 @@ public class Page1 {
 		c1 = new CommonTestMethods();
 	}
 	
+	protected By makeappoint = By.xpath("//a[@id='btn-make-appointment']");
+	
+	protected By facility = By.xpath("//select[@id='combo_facility']");
+	
+	protected By username = By.xpath("//input[@id='txt-username']");
+	
+	protected By password = By.xpath("//input[@id='txt-password']");
+	
+	protected By login = By.xpath("//button[@id='btn-login']");
+	
+	protected By hosre = By.xpath("//input[@id='chk_hospotal_readmission']");
+	
+	protected By radio = By.xpath("//input[@id='radio_program_medicaid']");
+	
+	protected By date = By.xpath("//input[@id='txt_visit_date']");
+	
+	protected By bookappoint = By.xpath("//button[@id='btn-book-appointment']");
+	
+	protected By appointconfirm = By.xpath("//h2[contains(text(),'Appointment Confirmation')]");
+	
 	public void init(WebDriver wd) {
 		this.wd = wd;
-		wd.get("https://katalon-demo-cura.herokuapp.com");
-		wd.manage().window().maximize();
+		c1.init_common(wd);
+		c1.launch("https://katalon-demo-cura.herokuapp.com");
+		c1.Maximize_Browser();
 	}
-	
-	
-	public void manipulations() throws IOException {
-		wd.findElement(By.xpath("//a[@id='btn-make-appointment']")).click();
-		int rtotal = r.total_rows(0);
-		for(int i=1;i<rtotal;i++) {
-			try {
-				wd.findElement(By.xpath("//input[@id='txt-username']")).sendKeys(r.read_cell(i, 0, 0));						
-				wd.findElement(By.xpath("//input[@id='txt-password']")).sendKeys(r.read_cell(i, 1, 0));						
-				wd.findElement(By.xpath("//button[@id='btn-login']")).click();
-				WebElement we = wd.findElement(By.xpath("//select[@id='combo_facility']"));
-				Select s1 = new Select(we);
-				s1.selectByVisibleText("Hongkong CURA Healthcare Center");
-				wd.findElement(By.xpath("//input[@id='chk_hospotal_readmission']")).click();
-				wd.findElement(By.xpath("//input[@id='radio_program_medicaid']")).click();
-				wd.findElement(By.xpath("//input[@id='txt_visit_date']")).sendKeys("01/12/2000");
-				wd.findElement(By.xpath("//button[@id='btn-book-appointment']")).click();
-				System.out.println("Test Passed");
-				r.set_cell(i, 3, "Passed", 0);
-				if(i!=rtotal-1) {
-					wd.findElement(By.xpath("//a[@id='menu-toggle']")).click();
-					wd.findElement(By.xpath("(//nav//ul//li//a)[5]")).click();
-					wd.findElement(By.xpath("//a[@id='btn-make-appointment']")).click();					
-				}
-				else {
-					r.file_close();
-				}
-			}
-			catch(Exception e) {
-				System.out.println("Test Failed");
-				r.set_cell(i, 3, "Failed", 0);
-			}
-		}
-		
-	}
-	
-	
 	
 }
