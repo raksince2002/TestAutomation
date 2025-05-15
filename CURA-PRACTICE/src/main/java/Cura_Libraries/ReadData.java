@@ -54,7 +54,6 @@ public class ReadData {
 	public void file_close() throws IOException {
 		wb.close();
 		f.close();
-		fout.close();
 	}
 
 }

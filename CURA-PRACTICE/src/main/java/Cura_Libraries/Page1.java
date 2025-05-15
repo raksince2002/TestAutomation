@@ -45,6 +45,7 @@ public class Page1 {
 		c1.init_common(wd);
 		c1.launch("https://katalon-demo-cura.herokuapp.com");
 		c1.Maximize_Browser();
+		wd.findElement(makeappoint).click();
 	}
 	
 }
