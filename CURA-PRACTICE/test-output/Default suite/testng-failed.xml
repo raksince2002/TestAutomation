@@ -5,14 +5,9 @@
     <classes>
       <class name="Curatests.test">
         <methods>
-          <include name="click_radio" invocation-numbers="0"/>
-          <include name="screenshot" invocation-numbers="0"/>
-          <include name="afterClass"/>
-          <include name="choosetest"/>
-          <include name="beforeClass"/>
-          <include name="click_book" invocation-numbers="0"/>
-          <include name="choose_date" invocation-numbers="0"/>
-          <include name="click_apply" invocation-numbers="0"/>
+          <include name="setUpClass"/>
+          <include name="tearDownClass"/>
+          <include name="runScenario" invocation-numbers="0 1 2"/>
         </methods>
       </class> <!-- Curatests.test -->
     </classes>
